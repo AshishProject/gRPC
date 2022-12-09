@@ -24,7 +24,7 @@ public class UserDao {
 	}
 
 	public void save(String username, String password) {
-		Connection connection = getConnection();
+		Connection connection = UserDao.getConnection();
 		String readQuery = "INSERT INTO logindetails VALUES(?,?)";
 
 		try {

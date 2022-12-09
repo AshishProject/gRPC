@@ -8,6 +8,7 @@ import com.ashish1.grpc.Token.TokenRequest;
 import com.ashish1.grpc.Token.TokenResponse;
 import com.ashish1.grpc.tokenGrpc.tokenImplBase;
 
+import interseptors.AuthTokenProvideInterceptor;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -19,7 +20,7 @@ public class TokenService extends tokenImplBase {
 
 		System.out.println("Inside Token ");
 
-		ManagedChannel channel1 = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
+		ManagedChannel channel1 = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().intercept(new AuthTokenProvideInterceptor()).build();
 		userBlockingStub userStub = userGrpc.newBlockingStub(channel1);
 		LoginRequest loginrequest = LoginRequest.newBuilder().setUsername(request.getUsername())
 				.setPassword(request.getPassword()).build();

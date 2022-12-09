@@ -14,3 +14,6 @@ connection = DriverManager.getConnection(url, "postgres", "1998");
 
 Command to change password :-
 ALTER USER postgres PASSWORD 'new Password'
+
+
+Added Authentication with Interseptor ({"auth_token" : "ASHISH"})
